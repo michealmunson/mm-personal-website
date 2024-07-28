@@ -2,15 +2,21 @@ const express = require("express");
 const app = express();
 const path = require("path");
 
-app.use(express.static(__dirname + "/"));
+// Explain to express the files it should use in addition to your main html file.
+app.use(express.static(__dirname + "/public"));
 
+// Make a get endpoint whenever someone visits your website. If there's an error
 app.get("/", (req, res) => {
-  const filePath = path.join(__dirname, "index.html");
+  const filePath = path.join(__dirname, "/public", "/index.html");
   console.log(`Sending file: ${filePath}`); // Logging the file path for debugging
   res.sendFile(filePath, (err) => {
     if (err) {
       console.error("Failed to send file:", err);
-      res.status(500).send("Internal Server Error");
+      res
+        .status(500)
+        .send(
+          "Internal Server Error! Please contact Micheal Munson at mmichealc@gmail.com"
+        );
     } else {
       console.log("File sent successfully");
     }
