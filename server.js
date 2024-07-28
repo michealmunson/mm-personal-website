@@ -3,7 +3,16 @@ const app = express();
 const path = require("path");
 
 // Explain to express the files it should use in addition to your main html file.
-app.use(express.static(__dirname + "/src"));
+app.use(
+  express.static(path.join(__dirname, "src"), {
+    setHeaders: (res, path) => {
+      res.setHeader(
+        "Cache-Control",
+        "no-cache, no-store, max-age=0, must-revalidate"
+      );
+    },
+  })
+);
 
 // Make a get endpoint whenever someone visits your website. If there's an error
 app.get("/", (req, res) => {

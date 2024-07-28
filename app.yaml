@@ -1,1 +1,7 @@
 runtime: nodejs22
+
+handlers:
+  - url: /src
+    static_dir: src
+    http_headers:
+      Cache-Control: "no-cache, no-store, max-age=0, must-revalidate"
