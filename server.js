@@ -3,11 +3,11 @@ const app = express();
 const path = require("path");
 
 // Explain to express the files it should use in addition to your main html file.
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/src"));
 
 // Make a get endpoint whenever someone visits your website. If there's an error
 app.get("/", (req, res) => {
-  const filePath = path.join(__dirname, "/public", "/index.html");
+  const filePath = path.join(__dirname, "/src", "/index.html");
   console.log(`Sending file: ${filePath}`); // Logging the file path for debugging
   res.sendFile(filePath, (err) => {
     if (err) {
